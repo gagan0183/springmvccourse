@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Spring mvc course</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen"
+	th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
+></link>
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js" 
+  th:href="@{/webjars/jquery/3.1.1/jquery.min.js}"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  
+<link href="../static/css/spring-core.css" th:href="@{css/spring-core.css}" rel="stylesheet"></link>
+</head>
+<body>
+	<div class="container">
+		<h2>Product detail</h2>
+		<div>
+			<form class="form-horizontal" th:object="${product}" th:action="@{/product}" method="post">
+				<input type="hidden" th:field="*{id}"></input>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">description:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{description}"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">price:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{price}"></input>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">image url:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{imageUrl}"></input>
+					</div>
+				</div>
+				<div class="col-sm-offset-2">
+					<input type="submit" class="btn btn-default"></input>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
