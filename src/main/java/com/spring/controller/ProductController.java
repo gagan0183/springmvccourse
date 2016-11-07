@@ -15,7 +15,7 @@ public class ProductController {
 
 	private ProductService productService;
 
-	@RequestMapping("/products")
+	@RequestMapping("/products/list")
 	public String listProducts(Model model) {
 		model.addAttribute("products", productService.listAllProducts());
 		return "products";
@@ -26,7 +26,7 @@ public class ProductController {
 		this.productService = productService;
 	}
 
-	@RequestMapping("/product/{id}")
+	@RequestMapping("/product/show/{id}")
 	public String getProduct(@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("product", productService.getProductById(id));
 		return "product";
@@ -38,7 +38,7 @@ public class ProductController {
 		return "productform";
 	}
 
-	@RequestMapping(value = "product", method = RequestMethod.POST)
+	@RequestMapping(value = "/product", method = RequestMethod.POST)
 	public String saveProduct(Product product) {
 		Product product1 = productService.saveProduct(product);
 		return "redirect:/product/" + product1.getId();
