@@ -1,6 +1,7 @@
 package com.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ public class ProductController {
 	}
 
 	@Autowired
+	@Qualifier("productServicejpaDaoImpl")
 	public void setProductService(ProductService productService) {
 		this.productService = productService;
 	}
@@ -41,7 +43,7 @@ public class ProductController {
 	@RequestMapping(value = "/product", method = RequestMethod.POST)
 	public String saveProduct(Product product) {
 		Product product1 = productService.saveProduct(product);
-		return "redirect:/product/" + product1.getId();
+		return "redirect:/product/show/" + product1.getId();
 	}
 
 	@RequestMapping("/product/edit/{id}")
@@ -53,6 +55,6 @@ public class ProductController {
 	@RequestMapping("/product/delete/{id}")
 	public String delete(@PathVariable Integer id) {
 		productService.deleteProduct(id);
-		return "redirect:/products";
+		return "redirect:/products/list";
 	}
 }
